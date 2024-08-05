@@ -26,3 +26,5 @@ function handleDarkColor(e){
     colorDark = e.target.value;
     generateQRCode;
 }
+
+// Testing git tracking.
