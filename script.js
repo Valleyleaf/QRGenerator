@@ -14,6 +14,7 @@ sizes.addEventListener("change", handleSize);
 shareBtn.addEventListener("click", handleShare);
 
 const defaultUrl = "https://adahllof.netlify.app/"
+//Above is default Url that will generate if user does not enter any info. Maybe change later.
 
 let colorLight = "#fff",
 colorDark = "000",
@@ -24,7 +25,34 @@ size = 300;
 
 function handleDarkColor(e){
     colorDark = e.target.value;
-    generateQRCode;
+    generateQRCode();
 }
 
-// Testing git tracking.
+function handleLightColor(e){
+    colorLight = e.target.value;
+    generateQRCode();
+}
+
+function handleQRText(e){
+    const value = e.target.value;
+    text = value;
+    if(!value){
+        text = defaultUrl;
+    }
+    generateQRCode();
+    //If user does not enter a value, this will generate the defaultUrl.
+}
+
+async function generateQRCode() {
+    qrContainer.innerHTML = "";
+    //What the hell is this?
+    new generateQRCode("qr-code", {
+        text,
+        height: size,
+        width: size,
+        colorLight,
+        colorDark,
+
+    });
+    download.href = await resolveDataUrl();
+}
