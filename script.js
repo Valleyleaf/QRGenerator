@@ -1,7 +1,7 @@
 const download = document.querySelector(".download");
 const dark = document.querySelector(".dark");
 const light = document.querySelector(".light");
-const qrContainer = document.querySelector(".#qr-code");
+const qrContainer = document.querySelector("#qr-code");
 const qrText = document.querySelector(".qr-text");
 const shareBtn = document.querySelector(".share-btn");
 const sizes = document.querySelector(".sizes");
@@ -65,6 +65,10 @@ async function handleShare(){
             //What the hell is this?
             const file = new File([blob], "QRCode.png", {
                 type: blob.type,
+            });
+            await navigator.share({
+                files: [file],
+                title: text,
             });
         }catch(error){
             alert("Your browser does not support sharing.");
